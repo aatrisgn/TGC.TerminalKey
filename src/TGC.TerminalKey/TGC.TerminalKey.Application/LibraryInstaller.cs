@@ -12,6 +12,7 @@ public static class LibraryInstaller
 	{
 		services.AddScoped<ITerminalConfigurationInitializaionService, TerminalConfigurationInitializaionService>();
 		services.AddScoped<IFetchSecretsService, FetchSecretsService>();
+		services.AddScoped<IOSSecretStore, OSSecretStore>();
 
 		services.AddSingleton<UserTerminalConfiguration>();
 
