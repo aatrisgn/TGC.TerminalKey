@@ -4,7 +4,7 @@ using Spectre.Console.Cli;
 
 namespace TGC.TerminalKey.Terminal.Commands;
 
-public class CreateCommand : Command<CreateCommand.Settings>
+public class CreateCommand : AsyncCommand<CreateCommand.Settings>
 {
     public class Settings : CommandSettings
     {
@@ -26,7 +26,7 @@ public class CreateCommand : Command<CreateCommand.Settings>
         }
     }
 
-    public override int Execute(CommandContext context, Settings settings, CancellationToken cancellationToken)
+    public override Task<int> ExecuteAsync(CommandContext context, Settings settings, CancellationToken cancellationToken)
     {
         string password = settings.Password ?? Guid.NewGuid().ToString("N").Substring(0, 12);
         bool isGenerated = string.IsNullOrEmpty(settings.Password);
@@ -41,6 +41,6 @@ public class CreateCommand : Command<CreateCommand.Settings>
             AnsiConsole.MarkupLine("[yellow]Password stored successfully.[/]");
         }
 
-        return 0;
+        return Task.FromResult(0);
     }
 }

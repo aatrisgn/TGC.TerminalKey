@@ -11,4 +11,13 @@
       <PackageReference Include="TGC.CSharpCodingStandards" Version="2.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Terminal\Commands\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TGC.TerminalKey.Domain\TGC.TerminalKey.Domain.csproj" />
+      <ProjectReference Include="..\TGC.WebApi.Communication\TGC.WebApi.Communication.csproj" />
+    </ItemGroup>
+
 </Project>

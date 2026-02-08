@@ -4,7 +4,7 @@ using Spectre.Console.Cli;
 
 namespace TGC.TerminalKey.Terminal.Commands;
 
-public class GetCommand : Command<GetCommand.Settings>
+public class GetCommand : AsyncCommand<GetCommand.Settings>
 {
     public class Settings : CommandSettings
     {
@@ -22,7 +22,7 @@ public class GetCommand : Command<GetCommand.Settings>
         }
     }
 
-    public override int Execute(CommandContext context, Settings settings, CancellationToken cancellationToken)
+    public override Task<int> ExecuteAsync(CommandContext context, Settings settings, CancellationToken cancellationToken)
     {
         AnsiConsole.MarkupLine($"[yellow]Retrieving item:[/] [blue]'{settings.Name}'[/]");
 
@@ -31,9 +31,9 @@ public class GetCommand : Command<GetCommand.Settings>
         table.AddColumn("Name");
         table.AddColumn("Password");
         table.AddRow(settings.Name, "********");
-        
+
         AnsiConsole.Write(table);
 
-        return 0;
+        return Task.FromResult(0);
     }
 }
